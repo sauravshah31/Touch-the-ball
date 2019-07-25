@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8" />
+		<title>JavaScript practise</title>
+		<style>
+			canvas{
+				margin: 0 auto;
+				display: block;
+				
+			}
+			#map{
+				margin: 0 auto;
+				display: block;
+				width: 80%;
+				height: 500px;
+				margin-top: 30px;
+				border: 1px solid black;
+			}
+			canvas{
+				margin-left:auto;
+				margin-right: auto;
+				border-left: 1px solid black;
+				border-right: 1px solid black;
+				display: block;
+				
+			}			
+			#canvas1{
+				border-top: 1px solid black;			
+			}
+			#canvas2{
+				border-bottom: 1px solid black;			
+			}
+		</style>
+	</head>
+	<body>
+		<div id='score'></div>
+		<div>
+			<canvas id='canvas1'></canvas>
+			<canvas id='canvas2'></canvas>
+		</div>
+		<!--
+		<div id="mypos"></div>
+		<div id="map"></div>
+		-->
+		<!--<script type="text/javascript">
+			var canvas,ctx;
+			var posX,posY,angle;
+			var incrementX=0,incrementY=0;
+			
+			function init(){
+				canvas=document.getElementById('canvas');
+				canvas.width=window.innerWidth*0.8;
+				canvas.height=window.innerHeight*0.9;
+				ctx=canvas.getContext('2d');
+				window.addEventListener('keydown',handleKeyDown,false);
+				window.addEventListener('keyup',handleKeyUp,false);
+				requestId=requestAnimationFrame(animationloop);
+			}
+			init();
+			window.onresize=function(){
+				canvas.width=window.innerWidth*0.8;
+				canvas.height=window.innerHeight*0.9;
+				posX=canvas.width*0.3;
+				posY=canvas.height*0.3;
+			}
+
+			posX=canvas.width*0.3;
+			posY=canvas.height*0.3;
+			angle=0;
+
+			function handleKeyDown(e){
+				if(e.keyCode==37)
+					incrementX=-1;
+				else if(e.keyCode==39)
+						incrementX=1;
+				else if(e.keyCode==82){
+					angle+=Math.PI*0.01;
+					angle=angle%(Math.PI*2);
+				}else if(e.keyCode==38)
+					incrementY=-1;
+				else if(e.keyCode==40)
+					incrementY=1;
+			}
+
+			function handleKeyUp(){
+				incrementX=0;
+				incrementY=0;
+			}
+
+			function animationloop(){
+				ctx.clearRect(0,0,canvas.width,canvas.height);
+
+				draw(posX,posY,angle,'green','yellow');
+				posX+=incrementX;
+				posY+=incrementY;
+
+				requestId =requestAnimationFrame(animationloop);
+			}
+
+			function draw(x,y,radian,colorBody,colorEye){
+				ctx.save();
+				ctx.translate(x,y);
+				ctx.rotate(radian);
+
+				ctx.fillStyle=colorBody;
+				ctx.fillRect(0,0,200,200);
+
+				ctx.fillStyle='red';
+				ctx.fillRect(35,30,20,20);
+				ctx.fillRect(140,30,20,20);
+
+				ctx.fillStyle=colorEye;
+				ctx.fillRect(43,37,10,10);
+				ctx.fillRect(143,37,10,10);
+
+				ctx.fillStyle='black';
+     			ctx.fillRect(90,70,20,80);
+
+     			ctx.fillStyle='purple';
+     			ctx.fillRect(60,165,80,20);
+
+     			ctx.restore();
+     			console.log('hi');
+			}
+
+			function start(){
+				requestId=requestAnimationFrame(animationloop);
+			}
+			function stop(){
+				if(requestId){
+					cancelAnimationFrame(requestId);
+				}
+			}
+
+
+		</script>-->
+		<!--
+		<script type="text/javascript">
+			//Webcam
+			navigator.mediaDevices.getUserMedia({
+				audio: true,
+				video: false
+				}).then(function(stream){
+					var audio=document.createElement('audio');
+					audio.srcObject=stream;
+					audio.play();
+				}).catch(err => {
+					console.log(err)
+				})
+		</script>-->
+		<script type="text/javascript" src="test1.js"></script>
+	</body>
+</html>
