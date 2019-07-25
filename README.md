@@ -5,4 +5,4 @@ JavaScript Ball Game
   <li>A JavaScript Game where the aim is to touch the ball</li>
   <li>You Mouse or array key is the control</li>
 </ul>
-  <b>( ͡° ͜ʖ ͡°) Edits and suggestions are highly appreciated  <font size="10">(^‿^)</font><b>
+  <b><font size="30">❤ </font>Edits and suggestions are highly appreciated  <font size="10">(^‿^)</font><b>
