@@ -123,7 +123,7 @@ function Circle(x,y,dx,dy,radius) {
 	}
 	this.update=function () {
 		if(this.x>=canvas2Control.posX-canvas2Control.hrw && this.x<=canvas2Control.posX+canvas2Control.hrw &&(this.y+this.radius)>=canvas2Top&&(this.y+this.radius)<=canvas2Top+this.dy){
-			beep(100,450,80);			
+			beep(99,450,80);			
 			ctx1.clearRect(this.x-this.radius,this.y-this.radius,this.x+this.radius,this.y+this.radius);
 			this.check=true;
 			score++;
@@ -170,7 +170,7 @@ function gameOver(){
 function animate() {
 	if(j==level*8||gmOver){
 		gameOver();
-		beep(200, 500, 200);
+		beep(99, 500, 2000);
 		return;
 	}
 	requestId=requestAnimationFrame(animate);
