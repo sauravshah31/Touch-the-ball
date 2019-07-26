@@ -34,12 +34,7 @@ window.addEventListener('keydown',updatePos,false);
 canvas2.addEventListener('mousemove',updatePos,false);
 
 //Touch events
-canvas1.addEventListener('touchstart',function(e){
-	e.preventDefault();
-},false);
-canvas2.addEventListener('touchstart',function(e){
-	e.preventDefault();
-},false);
+
 
 canvas1.addEventListener('touchmove',function(e){
 	updatePos(e);
