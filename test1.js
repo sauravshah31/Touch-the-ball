@@ -1,12 +1,30 @@
-var canvas1,ctx1,level=1;
+var canvas1,ctx1,level=100;
 var canvas2,ctx2;
 var scoreEl=document.querySelector('#score');
 var score=0;
+var requestId=undefined;
+var gmOver=false;
+a=new AudioContext() // browsers limit the number of concurrent audio contexts, so you better re-use'em
+
+function beep(vol, freq, duration){
+  v=a.createOscillator()
+  u=a.createGain()
+  v.connect(u)
+  v.frequency.value=freq
+  v.type="square"
+  u.connect(a.destination)
+  u.gain.value=vol*0.01
+  v.start(a.currentTime)
+  v.stop(a.currentTime+duration*0.001)
+}
 
 function getRandom(min,max){
 	return Math.random()*(max-min)+min;
 }
 
+function min(a,b){
+	return a>b?b:a;
+}
 function init() {
 		canvas1=document.querySelector('#canvas1');
 		canvas2=document.querySelector('#canvas2');
@@ -68,7 +86,6 @@ function updatePos(e) {
 }
 function updatePosTouch(e) {
 	canvas2Control.posX=e.touches[0].clientX-canvasLeft;
-	console.log(canvas2Control.posX);
 	checkPos();
 }
 
@@ -106,15 +123,16 @@ function Circle(x,y,dx,dy,radius) {
 	}
 	this.update=function () {
 		if(this.x>=canvas2Control.posX-canvas2Control.hrw && this.x<=canvas2Control.posX+canvas2Control.hrw &&(this.y+this.radius)>=canvas2Top&&(this.y+this.radius)<=canvas2Top+this.dy){
+			beep(100,450,80);			
 			ctx1.clearRect(this.x-this.radius,this.y-this.radius,this.x+this.radius,this.y+this.radius);
 			this.check=true;
 			score++;
 			j++;
-			
-		}else if(this.y-this.radius<=0&&this.check){
-			this.dy=-this.dy;		
+					
 		}else if(this.y+this.radius>canvas2Top+this.radius){
 			j++;		
+		}else if((this.y+this.radius)>canvas2Top+this.dy){
+			gmOver=true;
 		}
 		this.x=this.x+this.dx;
 		this.y+=this.dy;	
@@ -130,27 +148,33 @@ var circle=[];
 var prevDy=1;
 function initCircle(){
 for(var i=0;i<level*8;i++){
-	var x,y,dx=0,radius,requestId;
-	dy=getRandom(prevDy,prevDy+2);
+	var x,y,dx=0,radius;
+	dy=min(getRandom(prevDy,prevDy+1),10);
+		
 	prevDy=dy;
 	radius=getRandom(10,30);
-	x=getRandom(canvasLeft+radius,canvas1.width-radius);
+	x=getRandom(radius,canvas1.width-radius);
 	y=0;
-	circle.push(new Circle(x,y,dx,dy,30));
+	circle.push(new Circle(x,y,dx,dy,radius));
 }
 }
 initCircle();
 var j=0;
+function gameOver(){
+	scoreEl.innerText="Total Score: "+score;	
+	ctx1.clearRect(0,0,canvas1.width,canvas1.height);
+	copyRight(ctx1);
+	window.cancelAnimationFrame(requestId);
+}
 
 function animate() {
-	if(j==level*8){
-		scoreEl.innerText="Total Score: "+score;	
-		ctx1.clearRect(0,0,canvas1.width,canvas1.height);
-		copyRight(ctx1);
+	if(j==level*8||gmOver){
+		gameOver();
+		beep(200, 500, 200);
 		return;
 	}
 	requestId=requestAnimationFrame(animate);
 	ctx1.clearRect(0,0,canvas1.width,canvas1.height);
 	circle[j].draw();
 }
-requestAnimationFrame(animate);
+requestId=requestAnimationFrame(animate);
