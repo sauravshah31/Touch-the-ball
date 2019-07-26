@@ -34,13 +34,13 @@ window.addEventListener('keydown',updatePos,false);
 canvas2.addEventListener('mousemove',updatePos,false);
 
 //Touch events
-
+/*
 canvas1.addEventListener('touchenter',function(e){
 	e.preventDefault();
 },false);
 canvas2.addEventListener('touchenter',function(e){
 	e.preventDefault();
-},false);
+},false);*/
 canvas1.addEventListener('touchmove',function(e){
 	updatePosTouch(e);
 },false);
@@ -67,6 +67,8 @@ function updatePos(e) {
 	}
 }
 function updatePosTouch(e) {
+	canvas2Control.posX=e.touches[0].clientX-canvasLeft;
+	console.log(canvas2Control.posX);
 	checkPos();
 }
 
