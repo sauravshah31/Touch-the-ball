@@ -35,12 +35,17 @@ canvas2.addEventListener('mousemove',updatePos,false);
 
 //Touch events
 
-
+canvas1.addEventListener('touchenter',function(e){
+	e.preventDefault();
+},false);
+canvas2.addEventListener('touchenter',function(e){
+	e.preventDefault();
+},false);
 canvas1.addEventListener('touchmove',function(e){
-	updatePos(e);
+	updatePosTouch(e);
 },false);
 canvas2.addEventListener('touchmove',function(e){
-	updatePos(e);
+	updatePosTouch(e);
 },false);
 
 
@@ -48,7 +53,7 @@ function updatePos(e) {
 	if(e.type=='mousemove'||e.type=='touchmove')
 	{
 			
-			canvas2Control.posX=e.touches[0].cleantX||e.clientX-canvasLeft;
+			canvas2Control.posX=e.clientX-canvasLeft;
 				checkPos();	
 		
 	}else{
@@ -60,6 +65,9 @@ function updatePos(e) {
 				checkPos();		
 		}	
 	}
+}
+function updatePosTouch(e) {
+	checkPos();
 }
 
 function checkPos() {
