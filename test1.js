@@ -52,7 +52,8 @@ canvas2.addEventListener('touchmove',function(e){
 function updatePos(e) {
 	if(e.type=='mousemove'||e.type=='touchmove')
 	{
-			canvas2Control.posX=e.clientX-canvasLeft;
+			
+			canvas2Control.posX=e.touches[0].cleantX||e.clientX-canvasLeft;
 				checkPos();	
 		
 	}else{
