@@ -149,7 +149,7 @@ var prevDy=1;
 function initCircle(){
 for(var i=0;i<level*8;i++){
 	var x,y,dx=0,radius;
-	dy=min(getRandom(prevDy,prevDy+1),10);
+	dy=min(getRandom(prevDy,prevDy+1),12);
 		
 	prevDy=dy;
 	radius=getRandom(10,30);
