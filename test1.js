@@ -39,7 +39,7 @@ init();
 var canvasLeft=canvas1.getBoundingClientRect().left;
 var canvas2Top=canvas2.getBoundingClientRect().top;
 var canvas2Control={
-	rectWidth: canvas2.width*0.3,
+	rectWidth: canvas2.width>580?176:canvas2.width*0.3,
 	hrw: undefined,
 	posX:undefined
 	
@@ -123,15 +123,15 @@ function Circle(x,y,dx,dy,radius) {
 	}
 	this.update=function () {
 		if(this.x>=canvas2Control.posX-canvas2Control.hrw && this.x<=canvas2Control.posX+canvas2Control.hrw &&(this.y+this.radius)>=canvas2Top&&(this.y+this.radius)<=canvas2Top+this.dy){
-			beep(99,450,80);			
+			beep(100,450,80);			
 			ctx1.clearRect(this.x-this.radius,this.y-this.radius,this.x+this.radius,this.y+this.radius);
 			this.check=true;
 			score++;
 			j++;
 					
-		}else if(this.y+this.radius>canvas2Top+this.radius){
+		}/*else if(this.y+this.radius>canvas2Top+this.radius){
 			j++;		
-		}else if((this.y+this.radius)>canvas2Top+this.dy){
+		}*/else if((this.y+this.radius)>canvas2Top+this.dy){
 			gmOver=true;
 		}
 		this.x=this.x+this.dx;
@@ -170,7 +170,7 @@ function gameOver(){
 function animate() {
 	if(j==level*8||gmOver){
 		gameOver();
-		beep(99, 500, 200);
+		beep(200, 500, 200);
 		return;
 	}
 	requestId=requestAnimationFrame(animate);
