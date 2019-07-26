@@ -32,8 +32,25 @@ ctx2.fillRect(0,0,canvas2Control.rectWidth,10);
 canvas1.addEventListener('mousemove',updatePos,false);
 window.addEventListener('keydown',updatePos,false);
 canvas2.addEventListener('mousemove',updatePos,false);
+
+//Touch events
+canvas1.addEventListener('touchstart',function(e){
+	e.preventDefault();
+},false);
+canvas2.addEventListener('touchstart',function(e){
+	e.preventDefault();
+},false);
+
+canvas1.addEventListener('touchmove',function(e){
+	updatePos(e);
+},false);
+canvas2.addEventListener('touchmove',function(e){
+	updatePos(e);
+},false);
+
+
 function updatePos(e) {
-	if(e.type=='mousemove')
+	if(e.type=='mousemove'||e.type=='touchmove')
 	{
 			canvas2Control.posX=e.clientX-canvasLeft;
 				checkPos();	
