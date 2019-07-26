@@ -170,7 +170,7 @@ function gameOver(){
 function animate() {
 	if(j==level*8||gmOver){
 		gameOver();
-		beep(99, 500, 2000);
+		beep(99, 500, 200);
 		return;
 	}
 	requestId=requestAnimationFrame(animate);
