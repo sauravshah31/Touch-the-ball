@@ -1,4 +1,4 @@
-var canvas1,ctx1,level=120;
+var canvas1,ctx1,level=140;
 var canvas2,ctx2;
 var scoreEl=document.querySelector('#score');
 var score=0;
