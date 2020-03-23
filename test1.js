@@ -4,7 +4,7 @@ var scoreEl=document.querySelector('#score');
 var score=0;
 var requestId=undefined;
 var gmOver=false;
-a=new AudioContext() // browsers limit the number of concurrent audio contexts, so you better re-use'em
+a=new AudioContext() // browsers limit the number of concurrent audio contexts, so you better re-use'em <- copied from somewhere
 
 function beep(vol, freq, duration){
   v=a.createOscillator()
@@ -168,7 +168,7 @@ function gameOver(){
 }
 
 function animate() {
-	if(j==level*8||gmOver){
+	if(j>=level*9||gmOver){
 		gameOver();
 		beep(200, 500, 200);
 		return;
